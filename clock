@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+ <html lang="en">
+ <head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Hologue analogue</title>
+ <link rel="stylesheet" href="hologue.css">
+ <style>
+ * {
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+ font-family: "Times New Roman", Times, serif;
+ }
+ 
+ body {
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ height: 100vh;
+ background: #081b29;
+ }
+ 
+ 
+ .hologue {
+ width: 300px;
+ height: 300px;
+ position: relative;
+ background: #081b29;
+ border-radius: 50%;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ box-shadow: 4px -3px 25px 11px #0ef;
+ }
+ 
+ .nombre {
+ transform: rotate(calc(30deg * var(--n)));
+ position: absolute;
+ text-align: center;
+ inset: 10px;
+ font-size: 30px;
+ color: white;
+ font-weight: 600;
+ }
+ 
+ .nombre b {
+ transform: rotate(calc(-30deg * var(--n)));
+ display: inline-block;
+ }
+ 
+ 
+ .center-dot {
+ position: absolute;
+ width: 25px;
+ height: 25px;
+ background: rgb(255, 2, 213);
+ border-radius: 50%;
+ }
+ 
+ .Hour-hand,
+ .minute-hand,
+ .second-hand {
+ --rotate: 0;
+ position: absolute;
+ left: 50%;
+ bottom: 50%;
+ transform: translate(-50%) rotate(calc(var(--rotate) * 1deg));
+ transform-origin: bottom;
+ }
+ .Hour-hand {
+ width: 5px;
+ height: 100px;
+ background: #0ef;
+ }
+ 
+ .minute-hand {
+ width: 4px;
+ height: 110px;
+ background-color: rgb(0, 255, 76);
+ }
+ 
+ .second-hand {
+ width: 2px;
+ height: 120px;
+ background-color: red;
+ }
+ 
+ .div{
+ position: absolute;
+ text-align: center;
+ border-radius: 100%;
+ width: 150px;
+ height: 150px;
+ box-shadow: 4px -3px 25px 11px #0ef;
+ animation: earth 60s linear infinite;
+ }
+ @keyframes earth{
+ from{
+ transform: rotate(0deg);
+ }
+ to{
+ transform: rotate(360deg);
+ }
+ }
+ </style>
+ </head>
+ <body>
+ <div class="hologue">
+ <div class="nombre" style="--n:1"><b>1</b></div>
+ <div class="nombre" style="--n:2"><b>2</b></div>
+ <div class="nombre" style="--n:3"><b>3</b></div>
+ <div class="nombre" style="--n:4"><b>4</b></div>
+ <div class="nombre" style="--n:5"><b>5</b></div>
+ <div class="nombre" style="--n:6"><b>6</b></div>
+ <div class="nombre" style="--n:7"><b>7</b></div>
+ <div class="nombre" style="--n:8"><b>8</b></div>
+ <div class="nombre" style="--n:9"><b>9</b></div>
+ <div class="nombre" style="--n:10"><b>10</b></div>
+ <div class="nombre" style="--n:11"><b>11</b></div>
+ <div class="nombre" style="--n:12"><b>12</b></div> 
+ <img class="div" src="/storage/emulated/0/Pictures/png images/histoire-de-la-planete-terre_2.png" alt="">
+ 
+ <div class="Hour-hand" id="hour-hand"></div>
+ <div class="minute-hand" id="minute-hand"></div>
+ <div class="second-hand" id="second-hand"></div>
+ <div class="center-dot"></div>
+ </div>
+ <script type = 'text/javascript' scr ='juste.js'>
+ 
+ const hourHand = document.getElementById('hour-hand');
+ const minuteHand = document.getElementById('minute-hand') ;
+ const secondHand = document.getElementById('second-hand') ;
+ clock()
+ function clock() {
+ const date = new Date();
+ const ss = date.getSeconds()/60;
+ const mm =(ss + date.getMinutes())/60;
+ const hh =(mm + date.getHours())/12;
+ 
+ ht(hourHand, hh)
+ ht(minuteHand, mm)
+ ht(secondHand, ss)
+ 
+ }
+ 
+ function ht(element, rotation) {
+ element.style.setProperty('--rotate', rotation * 360);
+ }
+ 
+ setInterval(clock, 1000); 
+ 
+ </script>
+ 
+ </body>
+ </html>>
